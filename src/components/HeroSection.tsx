@@ -28,7 +28,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              👋 Selamat datang di portfolio saya
+              🍂Ami's page
             </motion.span>
           </motion.div>
 
@@ -38,9 +38,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
           >
-            Fullstack Developer
+            Hellow there, i'm 
             <br />
-            <span className="text-gradient">&amp; Content Creator</span>
+            <span className="text-gradient"> Mauidhaturrahmi</span>
           </motion.h1>
 
           <motion.p
@@ -49,8 +49,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
           >
-            Saya membangun aplikasi web yang indah dan fungsional, 
-            serta membagikan pengetahuan melalui konten yang inspiratif.
+            Masih belajar ngoding pelan-pelan dan bakal continue 
+            belajar terus sampai bisa buat website yang baguss!!
+            
           </motion.p>
 
           <motion.div
