@@ -11,7 +11,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 bg-navbg"> 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
