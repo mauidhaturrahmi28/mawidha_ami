@@ -20,17 +20,32 @@ export default function HeroSection() {
         {/* 🔥 FLEX KIRI - KANAN */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-10">
 
-          {/* 📸 FOTO KIRI */}
-          <motion.img
-            src="/cat.jpg" // 👉 ganti dengan foto kamu
-            alt="ami"
-            className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-2xl shadow-lg"
+          {/* 📸 FOTO KIRI DENGAN ANIMASI MELAYANG */}
+          <motion.div
             initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          />
+            animate={{ 
+              opacity: 1, 
+              x: 0,
+              y: [0, -20, 0] // Ini efek melayangnya (naik 20px lalu balik)
+            }}
+            transition={{ 
+              opacity: { duration: 0.8 },
+              x: { duration: 0.8 },
+              y: { 
+                duration: 4, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              } 
+            }}
+          >
+            <img
+              src="/cat.jpg" // 👉 Pastikan file cat.jpg ada di folder public ya!
+              alt="ami"
+              className="w-48 h-48 md:w-64 md:h-64 object-cover rounded-2xl shadow-lg border-4 border-white/20"
+            />
+          </motion.div>
 
-          {/* 📝 TEKS KANAN (KODE LAMA KAMU) */}
+          {/* 📝 TEKS KANAN */}
           <div className="max-w-4xl text-center md:text-left">
 
             <motion.div
@@ -44,7 +59,7 @@ export default function HeroSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                🍂Ami's page
+                🍂 Ami's page
               </motion.span>
             </motion.div>
 
@@ -130,8 +145,16 @@ export default function HeroSection() {
 
       <motion.button
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 rounded-full glass animate-float cursor-pointer"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 p-3 rounded-full glass cursor-pointer"
         whileHover={{ scale: 1.1 }}
+        animate={{
+          y: [0, 10, 0] // Panah bawah juga ikutan melayang biar senada
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
       >
         <ArrowDown className="h-5 w-5 text-primary" />
       </motion.button>
