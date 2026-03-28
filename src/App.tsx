@@ -4,13 +4,13 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { DotLottiePlayer } from "@dotlottie/react-player"; // Pastikan ini terinstall
+import { DotLottiePlayer } from "@dotlottie/react-player"; 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// --- KOMPONEN LOADING SCREEN (DI LUAR APP UTAMA BIAR RAPI) ---
+// --- LOADING SCREEN ---
 const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white dark:bg-[#020617]">
@@ -21,9 +21,8 @@ const LoadingScreen = () => {
           loop
         />
       </div>
-      {/* Teks loading dengan warna biru yang kamu suka */}
-      <p className="mt-4 text-blue-400 font-semibold tracking-[0.2em] animate-pulse text-sm">
-        SABAR GUYS...
+      <p className="mt-4 text-blue-400 font-semibold tracking-[0.2em] animate-pulse text-sm uppercase">
+        Sabar ya...
       </p>
     </div>
   );
@@ -33,7 +32,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Kita set loadingnya 2.5 detik aja biar gak kelamaan
+    // Loading 2.5 detik
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2500);
@@ -44,11 +43,13 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        {/* LOGIKA: Kalau masih loading, tampilin si kucing. Kalau udah selesai, tampilin webnya */}
         {isLoading ? (
           <LoadingScreen />
         ) : (
           <>
+            {/* INI KUNCI TRANSLATE: Wadah yang dicari tombol Navbar */}
+            <div id="google_translate_element" style={{ display: 'none' }}></div>
+            
             <Toaster />
             <Sonner />
             <BrowserRouter>

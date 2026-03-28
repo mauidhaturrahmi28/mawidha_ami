@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Moon, Sun, Menu, X, Languages } from 'lucide-react'; // Tambah icon Languages
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -11,6 +11,7 @@ interface NavbarProps {
 export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('ID');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +20,20 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Fungsi Translate Otomatis
+  const handleTranslate = () => {
+    const newLang = currentLang === 'ID' ? 'en' : 'id';
+    const googleCombo = document.querySelector('.goog-te-combo') as HTMLSelectElement;
+    
+    if (googleCombo) {
+      googleCombo.value = newLang;
+      googleCombo.dispatchEvent(new Event('change'));
+      setCurrentLang(newLang.toUpperCase());
+    } else {
+      alert("Sabar ya, fitur translate lagi loading...");
+    }
+  };
 
   const navItems = [
     { label: 'Home', href: '#home' },
@@ -59,7 +74,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <motion.a
                 key={item.label}
@@ -74,51 +89,50 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                 {item.label}
               </motion.a>
             ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
-              <AnimatePresence mode="wait">
-                {isDark ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                  >
-                    <Sun className="h-5 w-5" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                  >
-                    <Moon className="h-5 w-5" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </Button>
+
+            <div className="flex items-center gap-2 border-l pl-6 border-border">
+              {/* TOMBOL TRANSLATE */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleTranslate}
+                className="flex items-center gap-2 text-xs font-bold hover:bg-blue-500/10 text-blue-500"
+              >
+                <Languages className="h-4 w-4" />
+                {currentLang}
+              </Button>
+
+              {/* TOMBOL THEME */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="rounded-full"
+              >
+                <AnimatePresence mode="wait">
+                  {isDark ? (
+                    <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                      <Sun className="h-5 w-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                      <Moon className="h-5 w-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
+            <Button variant="ghost" size="sm" onClick={handleTranslate} className="text-xs font-bold text-blue-500">
+              {currentLang}
+            </Button>
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
+            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
