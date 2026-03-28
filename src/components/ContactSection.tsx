@@ -19,20 +19,24 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@developer.com',
-    href: 'mailto:hello@developer.com',
+    value: "mauidhaturrahmi28@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=mauidhaturrahmi28@gmail.com",
+        target:"_blank"
+    
+
   },
   {
     icon: Phone,
     label: 'Telepon',
-    value: '+62 812 3456 7890',
-    href: 'tel:+6281234567890',
+    value: '+6282379452242',
+    href: 'tel:+6282379452242',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'Jakarta, Indonesia',
-    href: '#',
+    value: 'Aceh, Banda Aceh',
+    href: 'https://www.google.com/maps/place/Banda+Aceh,+Kota+Banda+Aceh,+Aceh/@5.5611859,95.2875024,13z/data=!3m1!4b1!4m6!3m5!1s0x3040377ae63dbcdf:0x3039d80b220cb90!8m2!3d5.5482904!4d95.3237559!16zL20vMDR0MnZq?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D',
+    target:"_blank"
   },
 ];
 
@@ -86,7 +90,7 @@ export default function ContactSection() {
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error sending email:', error);
       toast({
         title: 'Gagal Mengirim',
@@ -126,12 +130,10 @@ export default function ContactSection() {
           >
             <div>
               <h3 className="font-display text-2xl font-bold mb-4">
-                Mari Berkolaborasi!
+                Let's be friends!
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Punya project menarik atau ingin berkolaborasi? Jangan ragu untuk 
-                menghubungi saya. Saya selalu terbuka untuk diskusi tentang project 
-                baru, ide kreatif, atau kesempatan untuk menjadi bagian dari visi Anda.
+                Ada ide project seru buat dikerjain bareng? or just wanna say hi? pintu email selalu terbuka!!.
               </p>
             </div>
 
